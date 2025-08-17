@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salon Rate List</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: url('https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+      color: white;
+      text-align: center;
+      padding: 3rem 1rem;
+      background-size: cover;
+      position: relative;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+    header h1, header p {
+      position: relative;
+      z-index: 2;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.2rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    .category {
+      margin-bottom: 3rem;
+    }
+    .category h2 {
+      display: flex;
+      align-items: center;
+      border-bottom: 3px solid #d4a373;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      color: #b5838d;
+    }
+    .category h2 img {
+      width: 35px;
+      margin-right: 10px;
+    }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 1rem;
+    }
+    .item-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .item-price {
+      font-weight: bold;
+      color: #b5838d;
+      margin-top: 0.3rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f4f4f4;
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>✨ Salon Rate List ✨</h1>
+    <p>Professional Services • Quality Care • Affordable Luxury</p>
+  </header>
+
+  <div class="container">
+    <!-- Cleanup -->
+    <div class="category">
+      <h2><img src="https://img.icons8.com/fluency/48/spa.png" alt="cleanup"> Cleanup</h2>
+      <div class="menu-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1599058917212-d750089bc06d?auto=format&fit=crop&w=500&q=80" alt="cleanup">
+          <div class="card-body">
+            <div class="item-name">Basic / Fruit / Papaya Cleanup</div>
+            <div class="item-price">₹1200</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1611078483531-1c43b77fff29?auto=format&fit=crop&w=500&q=80" alt="pearl">
+          <div class="card-body">
+            <div class="item-name">Pearl Cleanup</div>
+            <div class="item-price">₹1500</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1607082349566-187342ed2c0c?auto=format&fit=crop&w=500&q=80" alt="bleach">
+          <div class="card-body">
+            <div class="item-name">Bleach (Ozone / Vedic Line / Nature / Mango)</div>
+            <div class="item-price">₹500</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1618219870034-bf9efb58289f?auto=format&fit=crop&w=500&q=80" alt="d-tan">
+          <div class="card-body">
+            <div class="item-name">D-Tan (Hand / Leg / Stomach)</div>
+            <div class="item-price">₹500–800</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Facial -->
+    <div class="category">
+      <h2><img src="https://img.icons8.com/fluency/48/facial-mask.png" alt="facial"> Facial</h2>
+      <div class="menu-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1600334129128-685f2828c7e8?auto=format&fit=crop&w=500&q=80" alt="facial">
+          <div class="card-body">
+            <div class="item-name">Organic – Tan Off / Papaya / Detox</div>
+            <div class="item-price">₹2000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1586165368502-1a5c672bf9a2?auto=format&fit=crop&w=500&q=80" alt="kumkumadi">
+          <div class="card-body">
+            <div class="item-name">Kumkumadi Facial</div>
+            <div class="item-price">₹2400</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1625601800050-1a38c8c5b7d0?auto=format&fit=crop&w=500&q=80" alt="ozone">
+          <div class="card-body">
+            <div class="item-name">Ozone Whitening / Youth Restoring</div>
+            <div class="item-price">₹2000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1556228720-dbc165fec467?auto=format&fit=crop&w=500&q=80" alt="gold facial">
+          <div class="card-body">
+            <div class="item-name">Pearl / Gold / Diamond / Bio White</div>
+            <div class="item-price">₹2500</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Manicure & Pedicure -->
+    <div class="category">
+      <h2><img src="https://img.icons8.com/fluency/48/nail-polish.png" alt="manicure"> Manicure & Pedicure</h2>
+      <div class="menu-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1600336753345-bbb1897a1e9b?auto=format&fit=crop&w=500&q=80" alt="manicure">
+          <div class="card-body">
+            <div class="item-name">Classic Manicure</div>
+            <div class="item-price">₹500</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1600336754070-1ac8aa3a4c86?auto=format&fit=crop&w=500&q=80" alt="pedicure">
+          <div class="card-body">
+            <div class="item-name">Premium Pedicure</div>
+            <div class="item-price">₹1500</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1620916566398-15c93dffa50e?auto=format&fit=crop&w=500&q=80" alt="nails">
+          <div class="card-body">
+            <div class="item-name">Nail Paint</div>
+            <div class="item-price">₹200</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Waxing -->
+    <div class="category">
+      <h2><img src="https://img.icons8.com/fluency/48/honey.png" alt="waxing"> Waxing</h2>
+      <div class="menu-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1621371012159-3b2b5c1c6ea2?auto=format&fit=crop&w=500&q=80" alt="honey wax">
+          <div class="card-body">
+            <div class="item-name">Honey Wax (Full Hand / Full Leg)</div>
+            <div class="item-price">₹300–400</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1621371012159-3b2b5c1c6ea2?auto=format&fit=crop&w=500&q=80" alt="rica wax">
+          <div class="card-body">
+            <div class="item-name">Rica Wax (Full Body)</div>
+            <div class="item-price">₹3500</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1621371012159-3b2b5c1c6ea2?auto=format&fit=crop&w=500&q=80" alt="face wax">
+          <div class="card-body">
+            <div class="item-name">Face Waxing (Upper Lip / Full Face)</div>
+            <div class="item-price">₹50–600</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hair -->
+    <div class="category">
+      <h2><img src="https://img.icons8.com/fluency/48/barber-chair.png" alt="hair"> Hair</h2>
+      <div class="menu-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1595421514283-ef8a73c5ed49?auto=format&fit=crop&w=500&q=80" alt="hair cut">
+          <div class="card-body">
+            <div class="item-name">Hair Cut</div>
+            <div class="item-price">₹500–1000</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=500&q=80" alt="hair color">
+          <div class="card-body">
+            <div class="item-name">Hair Colour (Touch Up / Full)</div>
+            <div class="item-price">₹2000–5000+</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1600336784045-0d8ec3d9fc1a?auto=format&fit=crop&w=500&q=80" alt="keratin">
+          <div class="card-body">
+            <div class="item-name">Keratin / Botox</div>
+            <div class="item-price">₹6000–6500+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Makeup -->
+    <div class="category">
+      <h2><img src="https://img.icons8.com/fluency/48/lipstick.png" alt="makeup"> Makeup</h2>
+      <div class="menu-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1600959907703-75dfae36c08d?auto=format&fit=crop&w=500&q=80" alt="bridal">
+          <div class="card-body">
+            <div class="item-name">Bridal Makeup</div>
+            <div class="item-price">₹7000+</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1600962815726-457eb915e0f9?auto=format&fit=crop&w=500&q=80" alt="party makeup">
+          <div class="card-body">
+            <div class="item-name">Party Makeup</div>
+            <div class="item-price">₹2500+</div>
+          </div>
+        </div>
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1625601800050-1a38c8c5b7d0?auto=format&fit=crop&w=500&q=80" alt="cocktail">
+          <div class="card-body">
+            <div class="item-name">Cocktail / Engagement Makeup</div>
+            <div class="item-price">₹4000–5000+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Threading -->
+    <div class="category">
+      <h2><img src="https://img.icons8.com/fluency/48/tweezers.png" alt="threading"> Threading</h2>
+      <div class="menu-grid">
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1629198736161-295e7bf279b9?auto=format&fit=crop&w=500&q=80" alt="threading">
+          <div class="card-body">
+            <div class="item-name">Eyebrow / Full Face</div>
+            <div class="item-price">₹60 – ₹400</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Your Salon Name • All Rights Reserved
+  </footer>
+</body>
+</html>
