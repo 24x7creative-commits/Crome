@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CROME STUDIO — Menu & Booking</title>
+  <style>
+    :root { --bg:#0f1115; --card:#171a21; --text:#f3f5f7; --muted:#aab2c0; --accent:#e86f52; --pill:#222632; --ok:#10b981; }
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto;color:var(--text);background:linear-gradient(180deg,#0e0f13,#12151c)}
+    header{position:sticky;top:0;background:#0f1115d9;backdrop-filter:saturate(160%) blur(8px);border-bottom:1px solid #1e2230;z-index:10}
+    .wrap{max-width:960px;margin:0 auto;padding:16px}
+    .brand{display:flex;justify-content:space-between;align-items:center}
+    .brand h1{font-size:18px;margin:0;letter-spacing:.12em}
+    .phone{color:var(--muted);font-size:14px}
+    .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));padding:16px}
+    .card{background:var(--card);border:1px solid #22283a;border-radius:14px;padding:14px}
+    .card h3{margin:0 0 8px 0;font-size:16px}
+    .item{display:flex;justify-content:space-between;gap:8px;padding:8px;border-radius:10px;background:var(--pill);margin:8px 0;align-items:center}
+    .name{font-size:14px}
+    .price{font-weight:600}
+    .add{background:transparent;border:1px solid #2a3146;color:#d7dbea;border-radius:10px;padding:6px 10px;cursor:pointer}
+    .add.active{border-color:var(--ok);color:var(--ok)}
+    .cart{position:sticky;bottom:0;background:#0f1115;border-top:1px solid #22283a;padding:12px}
+    .cart-inner{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:10px 14px;font-weight:600;cursor:pointer}
+    .btn.secondary{background:#2a3146}
+    .muted{color:var(--muted);font-size:13px}
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+    .chip{background:#1a1f2d;border:1px solid #22283a;color:#cfd6e4;padding:6px 10px;border-radius:20px;cursor:pointer;font-size:12px}
+    .chip.active{background:#26304a;border-color:#3a4a6a}
+    footer{padding:40px 16px;color:var(--muted);text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap brand">
+      <h1>CROME STUDIO</h1>
+      <div class="phone">Call/WhatsApp: +91-XXXXXXXXXX</div>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="chips" id="chips"></div>
+  </div>
+
+  <main class="wrap">
+    <section class="grid" id="menu"></section>
+  </main>
+
+  <div class="cart">
+    <div class="wrap cart-inner">
+      <div>
+        <div class="muted" id="cart-count">0 items</div>
+        <div id="cart-total">₹0</div>
+      </div>
+      <div>
+        <button class="btn secondary" id="clear">Clear</button>
+        <button class="btn" id="book">Book Appointment</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>© CROME STUDIO — Rates subject to change. “+” indicates starting price.</footer>
+
+<script>
+const data = [
+  {cat:"Cleanup", items:[
+    ["Basic Cleanup",1200],["Fruit",1200],["Papaya",1500],["Pearl",1500]
+  ]},
+  {cat:"Bleach", items:[
+    ["Back",800],["Stomach",500],["Full Body",2000]
+  ]},
+  {cat:"D-Tan", items:[
+    ["Vedic Line",500],["Ozone",700],["Hand",600],["Leg","800+"]
+  ]},
+  {cat:"Facial — Organic (Twacha)", items:[
+    ["Tan Off",2000],["Papaya",2000],["Detoxifying",2000],
+    ["Rice Oil",2200],["Red Wine",2200],["Vitamin C",2400],["Kumkumadi",2400]
+  ]},
+  {cat:"Facial — Ozone", items:[
+    ["OPR Xpress White",2000],["Whitening",2000],["Youth Restoring",2000]
+  ]},
+  {cat:"Facial — Organic (Vedic Line)", items:[
+    ["Papaya & Lime",1800],["Onglow Facial",1800],["Alpha Whitening",1800],["Fruit Tropicana",1800],
+    ["Neem Brahmi (Acne)",2000],["Active Charcoal (Open Pores)",2000],["Moroccan Argan",2000],
+    ["Pearl Pishti",2500],["Gold Ojas",2500],["Diamond Tejas",2500],["Bio White",2500]
+  ]},
+  {cat:"Body Polishing", items:[["Chocolate Spa for Skin & Body Care",4500]]},
+  {cat:"Cure (Manicure & Pedicure)", items:[
+    ["Manicure Classic",500],["Manicure Premium",700],["Pedicure Classic",1000],["Pedicure Premium",1500],
+    ["Vedic Line Manicure",700],["Vedic Line Pedicure",1500],
+    ["Ozone Manicure",700],["Ozone Pedicure",1500],["Nail Paint",200]
+  ]},
+  {cat:"Waxing — Honey", items:[
+    ["Full Hand",300],["Full Leg/Half Leg","400/300"],["Under Arms",50],["Full Body",1500]
+  ]},
+  {cat:"Waxing — D-Tan", items:[
+    ["Full Hand",400],["Full Leg/Half Leg","500/400"],["Under Arms",100],["Full Body",2500]
+  ]},
+  {cat:"Waxing — Rica", items:[
+    ["Full Hand",500],["Full Leg/Half Leg","1000/700"],["Under Arms",200],["Full Body",3500]
+  ]},
+  {cat:"Face Waxing (Rica)", items:[
+    ["Face Wax",600],["Upper Lip",50]
+  ]},
+  {cat:"Hair (Women) — Cut", items:[
+    ["Hair Cut",700],["Advance Hair Cut",1000]
+  ]},
+  {cat:"Hair (Women) — Treatment", items:[
+    ["Anti Dandruff","1200+"],["Deep Conditioning","1500+"],["Lipidium","1700+"]
+  ]},
+  {cat:"Hair (Women) — Wash & Massage", items:[
+    ["Hair Wash",300],["Shampoo+Conditioner+Blow Dry",500],["Dry Head Massage",600],["Head Massage with Oil + Steam","1000+"]
+  ]},
+  {cat:"Hair (Women) — Spa", items:[["L’Oreal","1500+"]]},
+  {cat:"Hair (Women) — Colour (Majirel/Inoa)", items:[
+    ["Touch Up (Majirel/Inoa)","2000+/2200+"],["Full (Majirel/Inoa)","4500+/5000+"],
+    ["Highlight (Majirel/Inoa)","300+/350+"],["Funky Hair Colour","350+"]
+  ]},
+  {cat:"Hair (Women) — Therapy (L’Oreal)", items:[
+    ["Smoothening","5500+"],["Straightening","5500+"],["Rebonding","5500+"]
+  ]},
+  {cat:"Collagen Booster Treatment", items:[
+    ["Botox","6500+"],["Keratin","6000+"]
+  ]},
+  {cat:"Makeup", items:[
+    ["Basic Makeup","2000+"],["Party Makeup","2500+"],["Haldi/Mehndi Makeup","3500+"],
+    ["Cocktail Makeup","4000+"],["Engagement Makeup","5000+"],["Bridal Makeup","7000+"],
+    ["Saree Draping",300],["Hair Style","700+"]
+  ]},
+  {cat:"Threading", items:[
+    ["Eyebrow",60],["Upper Lip",20],["Chin",20],["Forehead",20],["Full Face",400]
+  ]},
+  {cat:"Hair (Men) — Cut & Wash", items:[
+    ["Hair Cut",500],["Advance Hair Cut",700],["Kids Hair Cut",300],["Hair Wash",300]
+  ]},
+  {cat:"Men — Shaving & Trimming", items:[
+    ["Shaving",300],["Beard Trimming",300],["Beard Trimming Designing",300],
+    ["Dry Head Massage",400],["Head Massage with Oil + Steam",700]
+  ]},
+  {cat:"Hair (Men) — Colour (Majirel/Inoa)", items:[
+    ["Highlighting (Majirel/Inoa)","200+/200+"],["Colour (Majirel/Inoa)","1000+/1000+"],["Funky Hair Colour","1000+"]
+  ]},
+  {cat:"Hair (Men) — Therapy (L’Oreal)", items:[
+    ["Spa","1000+"],["Smoothning","2000+"],["Straightening","2000+"],["Rebonding","2000+"]
+  ]},
+  {cat:"Hair (Men) — Treatment", items:[
+    ["Anti Dandruff","1000+"],["Dry & Damage Hair","1000+"],["Power Dose","1000+"],["Deep Conditioning","1000+"]
+  ]}
+];
+
+const chips = [...new Set(data.map(d=>d.cat.split(" — ")[0]))];
+const chipEl = document.getElementById('chips');
+let active = 'All';
+['All',...chips].forEach(c=>{
+  const b=document.createElement('button');
+  b.className='chip'+(c===active?' active':'');
+  b.textContent=c;
+  b.onclick=()=>{active=c;[...chipEl.children].forEach(x=>x.classList.remove('active'));b.classList.add('active');render()};
+  chipEl.appendChild(b);
+});
+
+const menuEl=document.getElementById('menu');
+const cart=new Map();
+
+function render(){
+  menuEl.innerHTML='';
+  data.filter(d=>active==='All'||d.cat.startsWith(active)).forEach(section=>{
+    const card=document.createElement('div');
+    card.className='card';
+    card.innerHTML=`<h3>${section.cat}</h3>`;
+    section.items.forEach(([name,price])=>{
+      const row=document.createElement('div');
+      row.className='item';
+      const key=section.cat+'__'+name;
+      const isIn=cart.has(key);
+      row.innerHTML=`<div class="name">${name}</div>
+                     <div class="price">₹${price}</div>
+                     <button class="add ${isIn?'active':''}">${isIn?'Added':'Add'}</button>`;
+      row.querySelector('.add').onclick=()=>{
+        if(cart.has(key)){cart.delete(key)} else {cart.set(key,{name,price,cat:section.cat})}
+        render();updateCart();
+      };
+      card.appendChild(row);
+    });
+    menuEl.appendChild(card);
+  });
+}
+render();
+
+function sum(){
+  let total=0;
+  cart.forEach(({price})=>{
+    if(typeof price==='number'){ total+=price; }
+  });
+  return total;
+}
+function updateCart(){
+  document.getElementById('cart-count').textContent=`${cart.size} items`;
+  document.getElementById('cart-total').textContent=`₹${sum()}`;
+}
+document.getElementById('clear').onclick=()=>{cart.clear();render();updateCart()};
+
+document.getElementById('book').onclick=()=>{
+  const items=[...cart.values()].map(i=>`• ${i.cat}: ${i.name} — ₹${i.price}`).join('%0A');
+  const total=sum();
+  const msg=encodeURIComponent(`Booking Request — CROME STUDIO%0A${items}%0ATotal (fixed-price only): ₹${total}%0APreferred Date/Time:%0AName:%0APhone:`);
+  // Replace with your WhatsApp number
+  const phone='91XXXXXXXXXX';
+  window.open(`https://wa.me/${phone}?text=${msg}`,'_blank');
+};
+</script>
+</body>
+</html>
